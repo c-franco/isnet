@@ -1,4 +1,4 @@
-﻿namespace isnet.Models
+﻿namespace sisnet.Models
 {
     public class Song
     {

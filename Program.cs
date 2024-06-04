@@ -1,11 +1,11 @@
-using isnet.Services;
+using sisnet.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddSingleton(sp => new AlgoliaService("XXXXXXX", "XXXXXXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXX"));
+builder.Services.AddSingleton(sp => new AlgoliaService("S099LQE2TQ", "4b24e31cafa66073adf8873ae2ac416f", "isnet-songs"));
 
 var app = builder.Build();
 

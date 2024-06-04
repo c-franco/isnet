@@ -1,11 +1,11 @@
 ﻿using Algolia.Search.Clients;
 using Algolia.Search.Models.Search;
-using isnet.Models;
+using sisnet.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace isnet.Services
+namespace sisnet.Services
 {
     public class AlgoliaService
     {

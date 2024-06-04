@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using isnet.Models;
-using isnet.Services;
+using sisnet.Models;
+using sisnet.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace isnet.Pages
+namespace sisnet.Pages
 {
     public class IndexModel : PageModel
     {
