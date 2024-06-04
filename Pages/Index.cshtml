@@ -1,0 +1,34 @@
+﻿@page
+@model isnet.Pages.IndexModel
+@{
+    ViewData["Title"] = "Search Songs";
+}
+
+<div class="search-page-container">
+    <div class="search-bar-container">
+        <h1>Search Songs</h1>
+        <input type="text" id="searchBox" class="search-box" placeholder="Search songs..." oninput="searchSongs()" />
+    </div>
+    <div class="search-results-container">
+        <ul id="results"></ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function searchSongs() {
+            const query = document.getElementById('searchBox').value;
+            const response = await fetch(`/Index?handler=SearchSongs&query=${query}`);
+            const results = await response.json();
+
+            const resultsList = document.getElementById('results');
+            resultsList.innerHTML = '';
+
+            results.forEach(song => {
+                const li = document.createElement('li');
+                li.textContent = `${song.artist_Name} - ${song.track_Name}`;
+                resultsList.appendChild(li);
+            });
+        }
+    </script>
+}
