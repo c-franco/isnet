@@ -9,18 +9,24 @@ namespace sisnet.Pages
     {
         private readonly AlgoliaService _algoliaService;
 
+        private const int PageSize = 10;
+
         public IndexModel(AlgoliaService algoliaService)
         {
             _algoliaService = algoliaService;
         }
 
-        public async Task<JsonResult> OnGetSearchSongsAsync(string query)
+        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int page = 0)
         {
+            int startIndex = page * PageSize;
             var results = await _algoliaService.SearchSongsAsync(query);
-            return new JsonResult(results);
+
+            List<Song> pagedResults = results.GetRange(startIndex, Math.Min(PageSize, results.Count - startIndex));
+
+            return new JsonResult(pagedResults);
         }
 
-        public async Task<JsonResult> OnGetTrendingSongsAsync()
+        public JsonResult OnGetTrendingSongsAsync()
         {
             List<Song> trendingSongs = GetTrendingSongs();
 

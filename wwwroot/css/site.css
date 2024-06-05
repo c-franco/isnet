@@ -120,9 +120,6 @@ body {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    max-width: 85%;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .play-icon {
@@ -136,12 +133,16 @@ body {
 .song-details {
     display: flex;
     flex-direction: column;
+    max-width: 720px;
 }
 
 .track-name {
     margin-top: 5px;
     font-size: 16px;
     font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .artist-name {
