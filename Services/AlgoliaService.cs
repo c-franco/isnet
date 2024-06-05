@@ -1,9 +1,6 @@
 ﻿using Algolia.Search.Clients;
 using Algolia.Search.Models.Search;
 using sisnet.Models;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace sisnet.Services
 {

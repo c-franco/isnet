@@ -10,6 +10,7 @@ body {
     scroll-behavior: smooth;
     line-height: 1.5;
     font-family: Onest, sans-serif;
+    background-color: #1e1e1e;
 }
 
 .search-page-container {
@@ -27,7 +28,6 @@ body {
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 290px;
 }
 
 .sisnet {
@@ -55,6 +55,7 @@ body {
     align-items: center;
     width: 100%;
     max-width: 680px;
+    margin-bottom: 40px;
 }
 
 .search-icon {
@@ -79,6 +80,25 @@ body {
 }
 
 .results-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.filters {
+    width: 25%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    color: white;
+    background-color: #242424;
+}
+
+.search-results {
+    width: 75%;
+    border-radius: 10px;
 }
 
 #results {
@@ -87,7 +107,58 @@ body {
 }
 
 #results li {
-    margin: 10px 0;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #242424;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.play-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 17px;
+    margin-right: 15px;
+    color: #ffffff;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    white-space: nowrap;
+}
+
+.track-name {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-name {
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #a1a1a1;
+    flex-basis: 100%;
+}
+
+.duration {
+    font-size: 13px;
+    color: #a1a1a1;
+    margin-right: 25px;
+    color: white;
 }
 
 @media screen and (max-width: 750px) {
@@ -105,6 +176,4 @@ body {
     .search-input-container {
         margin-bottom: 40px;
     }
-
-    
 }

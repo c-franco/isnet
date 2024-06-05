@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using sisnet.Models;
 using sisnet.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace sisnet.Pages
 {
