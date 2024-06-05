@@ -28,9 +28,23 @@
 
 @section Scripts {
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            searchSongs();
+        });
+
         async function searchSongs() {
-            const query = document.getElementById('searchBox').value;
-            const response = await fetch(`/Index?handler=SearchSongs&query=${query}`);
+            const query = document.getElementById('searchBox').value.trim();
+            let response;
+
+            if (query !== '') 
+            {
+                response = await fetch(`/Index?handler=SearchSongs&query=${query}`);
+            } 
+            else 
+            {
+                response = await fetch(`/Index?handler=TrendingSongs`);
+            }
+            console.log(response);
             const results = await response.json();
 
             const resultsList = document.getElementById('results');

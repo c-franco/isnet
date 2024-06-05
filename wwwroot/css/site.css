@@ -114,14 +114,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    position: relative;
 }
 
 .song-info {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    max-width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .play-icon {
@@ -135,16 +136,12 @@ body {
 .song-details {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    white-space: nowrap;
 }
 
 .track-name {
     margin-top: 5px;
     font-size: 16px;
     font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .artist-name {
