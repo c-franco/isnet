@@ -14,6 +14,6 @@
 
         public string Genre { get; set; }
 
-        public int Duration_ms { get; set; }
+        public string Duration_ms { get; set; }
     }
 }

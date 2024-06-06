@@ -15,10 +15,15 @@ namespace sisnet.Services
             _index = _client.InitIndex(indexName);
         }
 
-        public async Task<List<Song>> SearchSongsAsync(string query)
+        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize)
         {
-            var searchResult = await _index.SearchAsync<Song>(new Query(query));
-            return searchResult.Hits;
+            var searchResult = await _index.SearchAsync<Song>(new Query(query)
+            {
+                Page = page - 1,
+                HitsPerPage = pageSize
+            });
+
+            return searchResult.Hits.ToList();
         }
     }
 }

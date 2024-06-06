@@ -9,21 +9,21 @@ namespace sisnet.Pages
     {
         private readonly AlgoliaService _algoliaService;
 
-        private const int PageSize = 10;
-
         public IndexModel(AlgoliaService algoliaService)
         {
             _algoliaService = algoliaService;
         }
 
-        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int page = 0)
+        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int currentPage, int pageSize)
         {
-            int startIndex = page * PageSize;
-            var results = await _algoliaService.SearchSongsAsync(query);
+            var results = await _algoliaService.SearchSongsAsync(query, currentPage, pageSize);
 
-            List<Song> pagedResults = results.GetRange(startIndex, Math.Min(PageSize, results.Count - startIndex));
+            foreach(var result in results)
+            {
+                result.Duration_ms = FormatDuration(result.Duration_ms);
+            }
 
-            return new JsonResult(pagedResults);
+            return new JsonResult(results);
         }
 
         public JsonResult OnGetTrendingSongsAsync()
@@ -46,7 +46,7 @@ namespace sisnet.Pages
                     Popularity = 91,
                     Year = "2013",
                     Genre = "garage",
-                    Duration_ms = 183956
+                    Duration_ms = FormatDuration("183956")
                 },
                 new Song
                 {
@@ -56,7 +56,7 @@ namespace sisnet.Pages
                     Popularity = 94,
                     Year = "2022",
                     Genre = "pop",
-                    Duration_ms = 153947
+                    Duration_ms = FormatDuration("153947")
                 },
                 new Song
                 {
@@ -66,7 +66,7 @@ namespace sisnet.Pages
                     Popularity = 85,
                     Year = "2012",
                     Genre = "dance",
-                    Duration_ms = 233478
+                    Duration_ms = FormatDuration("233478")
                 },
                 new Song
                 {
@@ -76,7 +76,7 @@ namespace sisnet.Pages
                     Popularity = 60,
                     Year = "2012",
                     Genre = "alt-rock",
-                    Duration_ms = 240040
+                    Duration_ms = FormatDuration("240040")
                 },
                 new Song
                 {
@@ -86,7 +86,7 @@ namespace sisnet.Pages
                     Popularity = 90,
                     Year = "2022",
                     Genre = "pop",
-                    Duration_ms = 167303
+                    Duration_ms = FormatDuration("167303")
                 },
                 new Song
                 {
@@ -96,7 +96,7 @@ namespace sisnet.Pages
                     Popularity = 83,
                     Year = "2019",
                     Genre = "pop",
-                    Duration_ms = 178427
+                    Duration_ms = FormatDuration("178427")
                 },
                 new Song
                 {
@@ -106,7 +106,7 @@ namespace sisnet.Pages
                     Popularity = 75,
                     Year = "2022",
                     Genre = "pop",
-                    Duration_ms = 182347
+                    Duration_ms = FormatDuration("182347")
                 },
                 new Song
                 {
@@ -116,7 +116,7 @@ namespace sisnet.Pages
                     Popularity = 83,
                     Year = "2017",
                     Genre = "hip-hop",
-                    Duration_ms = 180387
+                    Duration_ms = FormatDuration("180387")
                 },
                 new Song
                 {
@@ -126,7 +126,7 @@ namespace sisnet.Pages
                     Popularity = 72,
                     Year = "2021",
                     Genre = "hip-hop",
-                    Duration_ms = 133707
+                    Duration_ms = FormatDuration("133707")
                 }
                 ,
                 new Song
@@ -137,11 +137,20 @@ namespace sisnet.Pages
                     Popularity = 90,
                     Year = "2004",
                     Genre = "hip-hop",
-                    Duration_ms = 250760
+                    Duration_ms = FormatDuration("250760")
                 }
             };
 
             return trendingSongs;
+        }
+
+        private string FormatDuration(string durationMs)
+        {
+            int duration = Convert.ToInt32(durationMs);
+            var totalSeconds = duration / 1000;
+            var minutes = totalSeconds / 60;
+            var seconds = totalSeconds % 60;
+            return $"{minutes}:{seconds:D2}";
         }
     }
 }
