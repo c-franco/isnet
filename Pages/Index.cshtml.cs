@@ -26,11 +26,11 @@ namespace sisnet.Pages
             return new JsonResult(results);
         }
 
-        public JsonResult OnGetTrendingSongsAsync()
+        public JsonResult OnGetTrendingSongsAsync(int pageSize)
         {
             List<Song> trendingSongs = GetTrendingSongs();
 
-            return new JsonResult(trendingSongs);
+            return new JsonResult(trendingSongs.Take(pageSize));
         }
 
         public List<Song> GetTrendingSongs()

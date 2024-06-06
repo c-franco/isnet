@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddSingleton(sp => new AlgoliaService("S099LQE2TQ", "f48e689de37506ae17460ca89225a7d0", "isnet-songs"));
+builder.Services.AddSingleton(sp => new AlgoliaService("XXX", "XXX", "XXX"));
 
 var app = builder.Build();
 

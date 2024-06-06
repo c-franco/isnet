@@ -41,8 +41,8 @@ body {
     text-align: center;
     -webkit-font-smoothing: antialiased;
     display: block;
-    margin-block-start: 1.2em;
-    margin-block-end: 0.7em;
+    margin-block-start: 1em;
+    margin-block-end: 0.5em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     unicode-bidi: isolate;
@@ -55,7 +55,7 @@ body {
     align-items: center;
     width: 100%;
     max-width: 680px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .search-icon {
@@ -84,7 +84,7 @@ body {
     justify-content: center;
     margin: 20px auto;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
 }
 
 .filters {
@@ -133,7 +133,7 @@ body {
 .song-details {
     display: flex;
     flex-direction: column;
-    max-width: 720px;
+    max-width: 650px;
 }
 
 .track-name {
@@ -163,7 +163,7 @@ body {
 .pagination-controls {
     display: flex;
     justify-content: end;
-    margin: 20px 0;
+    margin-top: 20px;
     gap: 15px;
 }
 
@@ -181,6 +181,22 @@ body {
 .pagination-controls button:disabled {
     background-color: #555;
     cursor: not-allowed;
+}
+
+.label-songs-per-page {
+    color: white;
+    font-size: 1rem;
+}
+
+.songs-per-page {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-left: 15px;
+}
+
+.songs-per-page option {
+    color: #242424;
 }
 
 @media screen and (max-width: 750px) {
