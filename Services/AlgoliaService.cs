@@ -25,5 +25,17 @@ namespace sisnet.Services
 
             return searchResult.Hits.ToList();
         }
+
+        public async Task<List<Song>> GetTrendingSongsAsync(int pageSize)
+        {
+            var searchParameters = new Query("")
+            {
+                HitsPerPage = pageSize,
+                Page = 0,
+            };
+
+            var searchResult = await _index.SearchAsync<Song>(searchParameters);
+            return searchResult.Hits.ToList();
+        }
     }
 }
