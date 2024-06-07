@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     scroll-behavior: smooth;
     line-height: 1.5;
@@ -197,6 +201,10 @@ body {
 
 .songs-per-page option {
     color: #242424;
+}
+
+.padded-results {
+    padding-bottom: 20px;
 }
 
 @media screen and (max-width: 750px) {

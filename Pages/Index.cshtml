@@ -16,7 +16,7 @@
             <input type="text" id="searchBox" class="search-box" placeholder="Track name, artist name..." oninput="searchSongs(1)" />
         </div>
     </div>
-    <div class="results-container">
+    <div id="results-container" class="results-container">
         <div class="filters">
             <label class="label-songs-per-page" for="pageSize">Songs per page:</label>
             <select class="songs-per-page" id="pageSize" onchange="searchSongs(1)">
@@ -55,6 +55,15 @@
                 response = await fetch(`/Index?handler=SearchSongs&query=${query}&currentPage=${currentPage}&pageSize=${pageSize}`);
             } else {
                 response = await fetch(`/Index?handler=TrendingSongs&pageSize=${pageSize}`);
+            }
+
+            const resultsContainer = document.getElementById('results-container');
+            if (resultsContainer) {
+                if (pageSize == 15 || pageSize == 20) {
+                    resultsContainer.classList.add('padded-results');
+                } else {
+                    resultsContainer.classList.remove('padded-results');
+                }
             }
 
             const results = await response.json();
