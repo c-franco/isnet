@@ -15,14 +15,11 @@ namespace sisnet.Services
             _index = _client.InitIndex(indexName);
         }
 
-        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize, int? startYear, int? endYear)
+        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize, int startYear = 2000, int endYear = 2024)
         {
            try
            {
-                if (startYear == null) startYear = 2000;
-                if (endYear == null) endYear = 2024;
-
-                Validations((int)startYear, (int)endYear);
+                Validations(startYear, endYear);
 
                 string filters = CreateFilters((int)startYear, (int)endYear);
 
@@ -35,9 +32,9 @@ namespace sisnet.Services
 
                 return searchResult.Hits.ToList();
            }
-           catch (Exception ex)
+           catch (Exception)
            {
-                throw new Exception();
+                return new List<Song>();
            }
         }
 
@@ -69,7 +66,13 @@ namespace sisnet.Services
 
         private void Validations(int startYear, int endYear)
         {
-            
+            if (startYear.ToString().Length < 4) startYear = 2000;
+            if (endYear.ToString().Length < 4) endYear = 2024;
+
+            if (startYear > endYear)
+            {
+                throw new Exception();
+            }
         }
     }
 }
