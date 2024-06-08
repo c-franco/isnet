@@ -75,7 +75,10 @@ namespace sisnet.Services
 
         private string FormatGenre(string genre)
         {
-            if (string.IsNullOrEmpty(genre)) return genre;
+            if (string.IsNullOrEmpty(genre))
+            {
+                return genre;
+            }
 
             return string.Join(" ", genre.Split('-').Select(word => char.ToUpper(word[0]) + word.Substring(1)));
         }
@@ -89,7 +92,9 @@ namespace sisnet.Services
             {
                 filters += $"year:{startYear + i}";
                 if (i <= endYear - startYear - 1)
+                {
                     filters += " OR ";
+                }
             }
 
             // Genres
@@ -102,7 +107,9 @@ namespace sisnet.Services
                 {
                     filters += $"genre:{splitGenres[i]}";
                     if (i < splitGenres.Length - 1)
+                    {
                         filters += " OR ";
+                    }
                 }
             }
 
@@ -111,8 +118,15 @@ namespace sisnet.Services
 
         private void Validations(int startYear, int endYear)
         {
-            if (startYear.ToString().Length < 4) startYear = 2000;
-            if (endYear.ToString().Length < 4) endYear = 2024;
+            if (startYear.ToString().Length < 4)
+            {
+                startYear = 2000;
+            }
+
+            if (endYear.ToString().Length < 4)
+            {
+                endYear = 2024;
+            }
 
             if (startYear > endYear)
             {

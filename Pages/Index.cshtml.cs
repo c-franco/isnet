@@ -29,10 +29,12 @@ namespace sisnet.Pages
         public async Task<JsonResult> OnGetTrendingSongsAsync(int pageSize)
         {
             var results = await _algoliaService.GetTrendingSongsAsync(pageSize);
+
             foreach (var song in results)
             {
                 song.Duration_ms = FormatDuration(song.Duration_ms);
             }
+
             return new JsonResult(results);
         }
 
@@ -46,6 +48,7 @@ namespace sisnet.Pages
         private string FormatDuration(string durationMs)
         {
             TimeSpan duration = TimeSpan.FromMilliseconds(Convert.ToDouble(durationMs));
+
             return $"{duration.Minutes}:{duration.Seconds:D2}";
         }
     }
