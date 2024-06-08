@@ -18,19 +18,23 @@
     </div>
     <div id="results-container" class="results-container">
         <div class="filters">
-            <label class="label" for="pageSize">Songs per page:</label>
-            <select class="songs-per-page" id="pageSize" onchange="searchSongs(1)">
-                <option value="5">5</option>
-                <option value="10" selected>10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-            </select>
-            <div class="release-date">
-                <span class="label">Release year:</span>
-                <div class="release-range">
-                    <input type="text" id="startYear" placeholder="e.g., 2010" maxlength="4" oninput="searchSongs(1)" onkeypress="return isNumberKey(event)" />
-                    <label class="label mid-label" for="endYear"> to </label>
-                    <input type="text" id="endYear" placeholder="e.g., 2012" maxlength="4" oninput="searchSongs(1)" onkeypress="return isNumberKey(event)" />
+            <div class="responsive-filter">
+                <div class="song-number-filter">
+                    <label class="label" for="pageSize">Songs per page:</label>
+                    <select class="songs-per-page" id="pageSize" onchange="searchSongs(1)">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+                <div class="release-date">
+                    <span class="label">Release year:</span>
+                    <div class="release-range">
+                        <input type="text" id="startYear" placeholder="e.g., 2010" maxlength="4" oninput="searchSongs(1)" onkeypress="return isNumberKey(event)" />
+                        <label class="label mid-label" for="endYear"> to </label>
+                        <input type="text" id="endYear" placeholder="e.g., 2012" maxlength="4" oninput="searchSongs(1)" onkeypress="return isNumberKey(event)" />
+                    </div>
                 </div>
             </div>
             <div class="genre-filter">

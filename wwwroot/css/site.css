@@ -280,6 +280,63 @@ body {
     margin-bottom: 10px;
 }
 
+@media screen and (max-width: 1150px) {
+    .results-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .filters {
+        width: 90%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display:flex;
+        flex-direction: row;
+    }
+
+    .responsive-filter {
+        width: 50%;
+        margin-left: 20px;
+    }
+
+    .song-number-filter {
+        display: flex;
+        margin: 0 auto;
+    }
+    .genre-filter {
+        margin: 0;
+        width: 50%;
+        margin-right: 20px;
+    }
+
+    .genre-options {
+        max-height: 120px;
+        overflow-y: scroll;
+        padding: 5px;
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
+
+    .search-results {
+        width: 90%;
+        margin: 0;
+        padding: 0;
+        padding-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .song-details {
+        max-width: 500px;
+    }
+}
+
 @media screen and (max-width: 750px) {
     .search-input-container {
         width: 90%;
@@ -291,8 +348,78 @@ body {
     }
 }
 
+@media screen and (max-width: 690px) {
+    .song-details {
+        max-width: 400px;
+    }
+
+}
+
+@media screen and (max-width: 620px) {
+    .song-details {
+        max-width: 350px;
+    }
+
+    .filters {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .genre-filter {
+        margin-left: 20px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .genre-options {
+        margin-right: 50px;
+    }
+
+    .responsive-filter {
+        width: 100%;
+    }
+
+    .track-name {
+        font-size: 14px;
+    }
+
+    .artist-name {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .song-details {
+        max-width: 300px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .search-input-container {
         margin-bottom: 40px;
+    }
+
+    .song-details {
+        max-width: 270px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .song-details {
+        max-width: 240px;
+    }
+
+    .track-name {
+        font-size: 12px;
+    }
+
+    .artist-name {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .song-details {
+        max-width: 200px;
     }
 }
