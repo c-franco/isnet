@@ -187,7 +187,7 @@ body {
     cursor: not-allowed;
 }
 
-.label-songs-per-page {
+.label {
     color: white;
     font-size: 1rem;
 }
@@ -205,6 +205,35 @@ body {
 
 .padded-results {
     padding-bottom: 20px;
+}
+
+.release-date {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.release-range {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.release-range input {
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    padding: 3px;
+    padding-left: 5px;
+}
+
+.mid-label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#startYear,
+#endYear {
+    width: 85px;
 }
 
 @media screen and (max-width: 750px) {

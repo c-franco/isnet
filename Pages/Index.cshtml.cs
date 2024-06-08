@@ -14,9 +14,9 @@ namespace sisnet.Pages
             _algoliaService = algoliaService;
         }
 
-        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int currentPage, int pageSize)
+        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int currentPage, int pageSize, int? startYear, int? endYear)
         {
-            var results = await _algoliaService.SearchSongsAsync(query, currentPage, pageSize);
+            var results = await _algoliaService.SearchSongsAsync(query, currentPage, pageSize, startYear, endYear);
 
             foreach(var result in results)
             {

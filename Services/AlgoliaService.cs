@@ -15,15 +15,30 @@ namespace sisnet.Services
             _index = _client.InitIndex(indexName);
         }
 
-        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize)
+        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize, int? startYear, int? endYear)
         {
-            var searchResult = await _index.SearchAsync<Song>(new Query(query)
-            {
-                Page = page - 1,
-                HitsPerPage = pageSize
-            });
+           try
+           {
+                if (startYear == null) startYear = 2000;
+                if (endYear == null) endYear = 2024;
 
-            return searchResult.Hits.ToList();
+                Validations((int)startYear, (int)endYear);
+
+                string filters = CreateFilters((int)startYear, (int)endYear);
+
+                var searchResult = await _index.SearchAsync<Song>(new Query(query)
+                {
+                    Page = page - 1,
+                    HitsPerPage = pageSize,
+                    Filters = filters
+                });
+
+                return searchResult.Hits.ToList();
+           }
+           catch (Exception ex)
+           {
+                throw new Exception();
+           }
         }
 
         public async Task<List<Song>> GetTrendingSongsAsync(int pageSize)
@@ -36,6 +51,25 @@ namespace sisnet.Services
 
             var searchResult = await _index.SearchAsync<Song>(searchParameters);
             return searchResult.Hits.ToList();
+        }
+
+        private string CreateFilters(int startYear, int endYear)
+        {
+            string filters = "";
+
+            for (int i = 0; i <= endYear - startYear; i++)
+            {
+                filters += $"year:{startYear + i}";
+                if (i <= endYear - startYear - 1)
+                    filters += " OR ";
+            }
+
+            return filters;
+        }
+
+        private void Validations(int startYear, int endYear)
+        {
+            
         }
     }
 }
