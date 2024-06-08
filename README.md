@@ -9,11 +9,11 @@
         Website
     </a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="https://github.com/c-franco/sisnet?tab=readme-ov-file#about" style="color: #3ef2ac">
+    <a href="https://github.com/c-franco/sisnet?tab=readme-ov-file#-about" style="color: #3ef2ac">
         About
     </a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="https://github.com/c-franco/sisnet?tab=readme-ov-file#getting-started" style="color: #3ef2ac">
+    <a href="https://github.com/c-franco/sisnet?tab=readme-ov-file#%EF%B8%8F-getting-started" style="color: #3ef2ac">
         Getting Started
     </a>
     <span>&nbsp;-&nbsp;</span>
