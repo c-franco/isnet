@@ -272,6 +272,14 @@ body {
     width: 100%; 
 }
 
+#noResultsMessage {
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 @media screen and (max-width: 750px) {
     .search-input-container {
         width: 90%;

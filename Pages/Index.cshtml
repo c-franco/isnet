@@ -43,6 +43,7 @@
         </div>
         <div class="search-results">
             <ul id="results"></ul>
+            <div id="noResultsMessage" style="display: none;">No songs match the search criteria.</div>
             <div class="pagination-controls">
                 <button id="prevPage" onclick="changePage(-1)">Previous</button>
                 <button id="nextPage" onclick="changePage(1)">Next</button>
@@ -104,20 +105,26 @@
 
             const results = await response.json();
             const resultsList = document.getElementById('results');
+            const noResultsMessage = document.getElementById('noResultsMessage');
             resultsList.innerHTML = '';
 
-            results.forEach(song => {
-                const li = document.createElement('li');
-                li.innerHTML = `<div class="song-info">
-                                    <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music-2"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg>
-                                    <div class="song-details">
-                                        <span class="track-name">${song.track_Name}</span>
-                                        <span class="artist-name">${song.artist_Name}</span>
+            if (results.length === 0) {
+                noResultsMessage.style.display = 'block';
+            } else {
+                noResultsMessage.style.display = 'none';
+                results.forEach(song => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<div class="song-info">
+                                        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music-2"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg>
+                                        <div class="song-details">
+                                            <span class="track-name">${song.track_Name}</span>
+                                            <span class="artist-name">${song.artist_Name}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <span class="duration">${song.duration_ms}</span>`;
-                resultsList.appendChild(li);
-            });
+                                    <span class="duration">${song.duration_ms}</span>`;
+                    resultsList.appendChild(li);
+                });
+            }
 
             document.getElementById('prevPage').disabled = currentPage <= 1 || query === '';
             document.getElementById('nextPage').disabled = results.length < pageSize || currentPage > 5 || query === '';
