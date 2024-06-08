@@ -86,7 +86,7 @@ body {
 .results-container {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
+    margin: 25px auto;
     width: 100%;
     max-width: 1100px;
 }
@@ -234,6 +234,27 @@ body {
 #startYear,
 #endYear {
     width: 85px;
+}
+
+.genre-filter {
+    margin-top: 25px;
+}
+
+.genre-filter label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.genre-options {
+    max-height: 230px;
+    overflow-y: scroll;
+    padding: 8px;
+}
+
+.genre-options label {
+    display: block;
+    margin-bottom: 4px;
+    width: 100%; 
 }
 
 @media screen and (max-width: 750px) {

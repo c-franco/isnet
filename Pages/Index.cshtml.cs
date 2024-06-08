@@ -14,9 +14,9 @@ namespace sisnet.Pages
             _algoliaService = algoliaService;
         }
 
-        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int currentPage, int pageSize, int startYear = 2000, int endYear = 2024)
+        public async Task<JsonResult> OnGetSearchSongsAsync(string query, int currentPage, int pageSize, string genres, int startYear = 2000, int endYear = 2024)
         {
-            var results = await _algoliaService.SearchSongsAsync(query, currentPage, pageSize, startYear, endYear);
+            var results = await _algoliaService.SearchSongsAsync(query, currentPage, pageSize, genres, startYear, endYear);
 
             foreach(var result in results)
             {
@@ -34,6 +34,13 @@ namespace sisnet.Pages
                 song.Duration_ms = FormatDuration(song.Duration_ms);
             }
             return new JsonResult(results);
+        }
+
+        public async Task<JsonResult> OnGetGenresAsync()
+        {
+            var genres = await _algoliaService.GetGenresAsync();
+
+            return new JsonResult(genres);
         }
 
         private string FormatDuration(string durationMs)

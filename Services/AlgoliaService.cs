@@ -15,13 +15,13 @@ namespace sisnet.Services
             _index = _client.InitIndex(indexName);
         }
 
-        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize, int startYear = 2000, int endYear = 2024)
+        public async Task<List<Song>> SearchSongsAsync(string query, int page, int pageSize, string genres, int startYear = 2000, int endYear = 2024)
         {
            try
            {
                 Validations(startYear, endYear);
 
-                string filters = CreateFilters((int)startYear, (int)endYear);
+                string filters = CreateFilters((int)startYear, (int)endYear, genres);
 
                 var searchResult = await _index.SearchAsync<Song>(new Query(query)
                 {
@@ -47,18 +47,63 @@ namespace sisnet.Services
             };
 
             var searchResult = await _index.SearchAsync<Song>(searchParameters);
+
             return searchResult.Hits.ToList();
         }
 
-        private string CreateFilters(int startYear, int endYear)
+        public async Task<List<Genre>> GetGenresAsync()
+        {
+            var results = await _index.SearchAsync<Song>(new Query("")
+            {
+                Facets = new List<string> { "genre" },
+                HitsPerPage = 0
+            });
+
+            var genres = results.Facets
+                .SelectMany(f => f.Value.Keys)
+                .Distinct()
+                .Select(g => new Genre
+                {
+                    Key = g,
+                    Value = FormatGenre(g)
+                })
+                .OrderBy(g => g.Value)
+                .ToList();
+
+            return genres;
+        }
+
+        private string FormatGenre(string genre)
+        {
+            if (string.IsNullOrEmpty(genre)) return genre;
+
+            return string.Join(" ", genre.Split('-').Select(word => char.ToUpper(word[0]) + word.Substring(1)));
+        }
+
+        private string CreateFilters(int startYear, int endYear, string genres)
         {
             string filters = "";
 
+            // Years
             for (int i = 0; i <= endYear - startYear; i++)
             {
                 filters += $"year:{startYear + i}";
                 if (i <= endYear - startYear - 1)
                     filters += " OR ";
+            }
+
+            // Genres
+            if(!string.IsNullOrEmpty(genres))
+            {
+                filters += " AND ";
+
+                string[] splitGenres = genres.Split(',');
+                for (int i = 0; i < splitGenres.Length; i++)
+                {
+                    filters += $"genre:{splitGenres[i]}";
+                    if (i < splitGenres.Length - 1)
+                        filters += " OR ";
+                }
             }
 
             return filters;
